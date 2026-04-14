@@ -1,57 +1,287 @@
-/* Fuente global */
-* {
+/* =========================
+   RESET & BASE
+========================= */
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Outfit", sans-serif;
 }
 
-/* Tema oscuro elegante */
+html,
 body {
-  background: #0d0d0f;
+  height: 100%;
+}
+
+body {
+  font-family: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #050509;
   color: #ffffff;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================
+   PALETA / BRAND
+========================= */
+
+:root {
+  --brand-black: #050509;
+  --brand-surface: #0f1016;
+  --brand-primary: #00f3ff;
+  --brand-secondary: #7b5cff;
+  --brand-muted: #9ca3af;
+  --brand-border: rgba(255, 255, 255, 0.08);
+  --brand-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Helpers para usar en HTML si quieres */
+.bg-brand-black { background-color: var(--brand-black); }
+.bg-brand-surface { background-color: var(--brand-surface); }
+.text-brand-primary { color: var(--brand-primary); }
+.text-brand-muted { color: var(--brand-muted); }
+
+/* =========================
+   GRADIENTES / EFECTOS
+========================= */
+
+.bg-cyber-gradient {
+  background-image: linear-gradient(120deg, #00f3ff, #7b5cff, #ff4ecd);
+}
+
+.shadow-pro {
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+.shadow-tech-glow {
+  box-shadow:
+    0 0 25px rgba(0, 243, 255, 0.15),
+    0 0 60px rgba(0, 0, 0, 0.9);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.nav-btn {
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--brand-muted);
+  transition: all 0.25s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+/* =========================
+   BOTONES PRINCIPALES
+========================= */
+
+.btn-primary,
+.btn-secondary {
+  position: relative;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 1rem 3rem;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s ease;
 }
 
-/* Header */
-.header {
-  text-align: center;
-  max-width: 800px;
-  padding: 40px 20px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+.btn-primary {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
 }
 
-/* Título principal */
-.title {
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: -1px;
-  margin-bottom: 10px;
-  background: linear-gradient(90deg, #6a5cff, #00d4ff);
+.btn-primary:hover {
+  padding-right: 3.8rem;
+  background: var(--brand-primary);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: #ffffff;
+}
+
+.btn-secondary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-secondary:hover::after {
+  opacity: 1;
+}
+
+/* =========================
+   SECCIONES / TITULARES
+========================= */
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: var(--brand-primary);
+  font-style: italic;
+}
+
+.section-title {
+  margin-top: 0.75rem;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.section-title span {
+  background-image: linear-gradient(120deg, #00f3ff, #7b5cff, #ff4ecd);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
-/* Subtítulo */
-.subtitle {
-  font-size: 1.2rem;
-  font-weight: 300;
-  opacity: 0.85;
+.section-sub {
+  font-size: 9px;
+  font-family: "Outfit", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--brand-muted);
+  opacity: 0.7;
 }
 
-/* Animación suave */
-.header {
-  animation: fadeIn 1.2s ease forwards;
+/* =========================
+   BENTO CARDS
+========================= */
+
+.bento-card {
+  position: relative;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  background: radial-gradient(circle at top left, rgba(0, 243, 255, 0.08), transparent 55%),
+              radial-gradient(circle at bottom right, rgba(123, 92, 255, 0.08), transparent 55%),
+              var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  box-shadow: var(--brand-shadow);
+  overflow: hidden;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+.bento-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: radial-gradient(#00f3ff 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.bento-card:hover {
+  border-color: rgba(0, 243, 255, 0.4);
+}
+
+/* =========================
+   AVATAR PULSE
+========================= */
+
+.avatar-pulse {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 2px solid var(--brand-black);
+  background: var(--brand-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.avatar-pulse::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: rgba(0, 243, 255, 0.4);
+}
+
+/* =========================
+   ICON PLACEHOLDER
+========================= */
+
+.icon-cpu {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid rgba(0, 243, 255, 0.4);
+  box-shadow: 0 0 18px rgba(0, 243, 255, 0.35);
+}
+
+/* =========================
+   SHIMMER / BADGE
+========================= */
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 40%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 3s infinite;
+  opacity: 0.7;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  60% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* =========================
+   UTILIDADES SUAVES
+========================= */
+
+.text-shadow-pro {
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+}
+
+/* Puedes añadir scroll suave si quieres */
+html {
+  scroll-behavior: smooth;
 }
