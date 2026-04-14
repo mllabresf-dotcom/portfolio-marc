@@ -5,27 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marc Llabres · Arquitecto Digital Futurista</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Portafolio de Marc Llabres (MarcOficial23), desarrollador full‑stack futurista especializado en experiencias digitales premium, IA y arquitecturas de alto rendimiento." />
-  <meta name="keywords" content="Marc Llabres, MarcOficial23, Fullstack, Developer, Futurista, Portfolio, IA, Web Premium" />
-  <meta name="author" content="Marc Llabres" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Marc Llabres · Arquitecto Digital Futurista" />
-  <meta property="og:description" content="Explora el universo digital de Marc Llabres, creador de soluciones avanzadas donde la ingeniería se fusiona con el diseño." />
-  <meta property="og:image" content="dazorn_oficial.png" />
-  <meta property="og:type" content="website" />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="dazorn_oficial.png" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -36,17 +19,7 @@
 
   <div id="loader" class="loader-screen">
     <div class="loader-box">
-      <pre class="loader-text">
-System_Boot
-Sequence_Protocol_v6.1
-100%
-Initializing Neural_Interface...     [SUCCESS]
-Loading Mesh_Gradient_Shaders...     [SUCCESS]
-Establishing Secure_Liaison_Node...  [SUCCESS]
-Calibrating Magnetic_Dock...         [SUCCESS]
-Syncing Bento_Grid_Architecture...   [SUCCESS]
-Access_Granted: Welcome Architect.   [SUCCESS]
-      </pre>
+      <pre id="loaderText" class="loader-text"></pre>
     </div>
   </div>
 
@@ -207,15 +180,41 @@ Access_Granted: Welcome Architect.   [SUCCESS]
 
   <!-- SCRIPT DE CARGA -->
   <script>
-    setTimeout(() => {
-      document.getElementById("loader").style.opacity = "0";
-      setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("content").classList.remove("hidden");
-      }, 600);
-    }, 3500);
+    const lines = [
+      "System_Boot",
+      "Sequence_Protocol_v6.1",
+      "100%",
+      "Initializing Neural_Interface...     [SUCCESS]",
+      "Loading Mesh_Gradient_Shaders...     [SUCCESS]",
+      "Establishing Secure_Liaison_Node...  [SUCCESS]",
+      "Calibrating Magnetic_Dock...         [SUCCESS]",
+      "Syncing Bento_Grid_Architecture...   [SUCCESS]",
+      "Access_Granted: Welcome Architect.   [SUCCESS]"
+    ];
+
+    let index = 0;
+    const loaderText = document.getElementById("loaderText");
+
+    function typeLine() {
+      if (index < lines.length) {
+        loaderText.innerHTML += lines[index] + "\n";
+        index++;
+        setTimeout(typeLine, 250);
+      } else {
+        setTimeout(() => {
+          document.getElementById("loader").style.opacity = "0";
+          setTimeout(() => {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("content").classList.remove("hidden");
+          }, 600);
+        }, 800);
+      }
+    }
+
+    typeLine();
   </script>
 
 </body>
 </html>
+
 
